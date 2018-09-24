@@ -10,3 +10,6 @@ Start:
 > start mongodb
 > npm run dev
 ```
+
+After this you can use a client like GraphQL Playground to browse the API.
+To connect to the API use the address: http://localhost:4000/graphql
