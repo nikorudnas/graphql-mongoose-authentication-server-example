@@ -1,0 +1,34 @@
+# Define the type of input expected
+
+scalar ObjectID
+
+type AuthPayload {
+  token: String!
+  user: User
+}
+
+type User {
+  _id: ObjectID!
+  email: String
+  todos: [Todo!]
+}
+
+type Todo {
+  _id: ObjectID!
+  content: String!
+}
+
+# This type specifies the entry points into our API
+type Query {
+  allTodos: [Todo!]!
+  Todo(_id: ObjectID!): Todo!
+}
+
+# The mutation root type, used to define all mutations
+type Mutation {
+  signup(email: String!, password: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  createTodo(content: String!): Todo!
+  updateTodo(_id: ObjectID!, content: String!): Todo!
+  deleteTodo(_id: ObjectID!): Todo!
+}
