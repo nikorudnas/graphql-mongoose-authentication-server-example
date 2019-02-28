@@ -1,7 +1,5 @@
 import User from '../../database/models/UserModel';
-import * as utils from '../../utils/utils';
-
-const { authenticate } = utils.default;
+import authenticate from '../../utils/authentication';
 
 // Function to validate the user and return his/hers todos
 const allTodos = async (_, __, ctx) => {
@@ -27,9 +25,7 @@ const Todo = async (_, { _id }, ctx) => {
 
     const todo = user.todos.find(x => x._id.toString() === _id);
 
-    if (!todo) {
-      throw new Error('Cannot find the todo!');
-    }
+    if (!todo) throw new Error('Cannot find the todo!');
 
     return todo;
   } catch (err) {

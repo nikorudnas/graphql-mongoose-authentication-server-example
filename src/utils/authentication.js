@@ -2,7 +2,7 @@ import { verify } from 'jsonwebtoken';
 import config from '../config/config';
 
 // Authenticate the token from request and return used_id from the decrypted token
-const authenticate = context => {
+export default function authenticate(context) {
   const Authorization = context.req.get('authorization');
 
   if (Authorization) {
@@ -12,8 +12,4 @@ const authenticate = context => {
   }
 
   throw new Error('Not authorized');
-};
-
-export default {
-  authenticate,
-};
+}

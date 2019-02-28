@@ -1,6 +1,6 @@
 # Schema model
 
-# Replace this later
+# Another workaround is to send the _id as string
 scalar ObjectID
 
 ### Types
