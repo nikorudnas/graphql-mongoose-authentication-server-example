@@ -13,3 +13,9 @@ Start:
 
 After this you can use a client like GraphQL Playground to browse the API.
 To connect to the API use the address: http://localhost:4000/graphql
+
+## Or run with docker
+
+```
+docker-compose up -d
+```

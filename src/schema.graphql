@@ -1,24 +1,30 @@
-# Define the type of input expected
+# Schema model
 
+# Replace this later
 scalar ObjectID
 
+### Types
+
+# Auth requires token
 type AuthPayload {
   token: String!
   user: User
 }
 
+# User requires _id
 type User {
   _id: ObjectID!
   email: String
   todos: [Todo!]
 }
 
+# Todo requires _id and content
 type Todo {
   _id: ObjectID!
   content: String!
 }
 
-# This type specifies the entry points into our API
+# The query root type, used to define all queries
 type Query {
   allTodos: [Todo!]!
   Todo(_id: ObjectID!): Todo!

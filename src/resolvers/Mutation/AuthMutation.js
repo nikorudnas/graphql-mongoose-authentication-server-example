@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 import User from '../../database/models/UserModel';
 import config from '../../config/config';
 
+// Function to validate the input and create a new user. Returns a JWT
 const signup = async (_, { email, password }) => {
   try {
     let user = await User.findOne({ email }).lean();
@@ -22,6 +23,7 @@ const signup = async (_, { email, password }) => {
   }
 };
 
+// Function to validate the user and login in. Returns a JWT
 const login = async (_, { email, password }) => {
   try {
     const user = await User.findOne({ email }, '+password').lean();

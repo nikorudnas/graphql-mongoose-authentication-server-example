@@ -1,14 +1,14 @@
-FROM node:latest
+FROM mhart/alpine-node:11
 
 # Create app directory
-WORKDIR /usr/src/demoapp
+WORKDIR /usr/src/graphql-server
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 # If you are building your code for production
 # RUN npm install --only=production
 
@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 4000 27017
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "docker" ]

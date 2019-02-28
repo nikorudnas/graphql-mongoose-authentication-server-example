@@ -6,6 +6,7 @@ const { authenticate } = utils.default;
 
 const { ObjectId } = mongoose.Types;
 
+// Function to validate the user and create a new todo
 const createTodo = async (_, { content }, ctx) => {
   const userId = authenticate(ctx);
 
@@ -24,6 +25,7 @@ const createTodo = async (_, { content }, ctx) => {
   }
 };
 
+// Function to validate the user and edit a todo
 const updateTodo = async (_, { _id, content }, ctx) => {
   const userId = authenticate(ctx);
 
@@ -39,6 +41,7 @@ const updateTodo = async (_, { _id, content }, ctx) => {
   }
 };
 
+// Function to validate the user and delete a todo
 const deleteTodo = async (_, { _id }, ctx) => {
   const userId = authenticate(ctx);
 

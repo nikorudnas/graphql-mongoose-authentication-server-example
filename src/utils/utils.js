@@ -1,6 +1,7 @@
 import { verify } from 'jsonwebtoken';
 import config from '../config/config';
 
+// Authenticate the token from request and return used_id from the decrypted token
 const authenticate = context => {
   const Authorization = context.req.get('authorization');
 

@@ -1,0 +1,5 @@
+Fix schema scalar ObjectID
+Make utils->authenticate to a middleware?
+const { authenticate } = utils.default; <-- remove default
+export database operations to an external file?
+new mutations and queryies if extending to My & Given todos
