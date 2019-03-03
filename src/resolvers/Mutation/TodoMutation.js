@@ -1,11 +1,8 @@
-import mongoose from 'mongoose';
 import User from '../../database/models/UserModel';
 import authenticate from '../../utils/authentication';
 
-const { ObjectId } = mongoose.Types;
-
 // Function to validate the user and create a new todo
-const createTodo = async (_, { content }, ctx) => {
+const createTodo = async (_, { todo }, ctx) => {
   const userId = authenticate(ctx);
 
   try {
@@ -13,33 +10,42 @@ const createTodo = async (_, { content }, ctx) => {
     const user = await User.findOne({ _id: userId });
 
     // Create new todo
-    const newTodo = { _id: new ObjectId(), content };
+    const newTodo = {
+      title: todo.title,
+      description: todo.description || '',
+    };
 
     // Push the todo to users todos array
     user.todos.push(newTodo);
 
     user.save();
 
-    // Return the new todo
-    return newTodo;
+    // Return true for success
+    return true;
   } catch (err) {
     throw new Error(err);
   }
 };
 
 // Function to validate the user and edit a todo
-const updateTodo = async (_, { _id, content }, ctx) => {
+const updateTodo = async (_, { todo }, ctx) => {
   const userId = authenticate(ctx);
 
   // Try finding a user with id from token and a todo with id. Then update the contect of that todo
   try {
-    await User.update(
-      { _id: userId, 'todos._id': _id },
-      { $set: { 'todos.$.content': content } },
+    await User.updateOne(
+      { _id: userId, 'todos._id': todo._id },
+      {
+        $set: {
+          'todos.$.title': todo.title,
+          'todos.$.description': todo.description,
+          'todos.$.completed': todo.completed,
+        },
+      },
     );
 
-    // Return user id and new content
-    return { _id, content };
+    // Return true for success
+    return true;
   } catch (err) {
     throw new Error(err);
   }
@@ -57,10 +63,8 @@ const deleteTodo = async (_, { _id }, ctx) => {
       { multi: true },
     );
 
-    const content = 'The content was removed';
-
-    // Return user id and message
-    return { _id, content };
+    // Return true for success
+    return true;
   } catch (err) {
     throw new Error(err);
   }

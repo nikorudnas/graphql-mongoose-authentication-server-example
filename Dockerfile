@@ -15,6 +15,6 @@ RUN npm ci
 # Bundle app source
 COPY . .
 
-EXPOSE 4000 27017
+EXPOSE 4000
 
 CMD [ "npm", "run", "docker" ]
