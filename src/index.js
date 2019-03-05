@@ -14,20 +14,25 @@ mongoose.Promise = global.Promise;
 
 function mongoConnect() {
   // Set up default mongoose connection
-  mongoose.connect(config.DATABASE_URI, config.DATABASE_OPTIONS).then(
-    () => {
-      console.log('MongoDB connection established!');
-    },
-    err => {
-      // Try again if connection fails
-      console.log(err);
-      console.log('------------------------------');
-      console.log('Trying to reconnect to MongoDB shortly...');
-      setTimeout(() => {
-        mongoConnect();
-      }, 10000);
-    },
-  );
+  mongoose
+    .connect(
+      config.DATABASE_URI,
+      config.DATABASE_OPTIONS,
+    )
+    .then(
+      () => {
+        console.log('MongoDB connection established!');
+      },
+      err => {
+        // Try again if connection fails
+        console.log(err);
+        console.log('------------------------------');
+        console.log('Trying to reconnect to MongoDB shortly...');
+        setTimeout(() => {
+          mongoConnect();
+        }, 10000);
+      },
+    );
 }
 
 // Make the connection

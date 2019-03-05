@@ -1,4 +1,6 @@
-Token checking to middleware
-new mutations and queryies for My todos & Assigned todos
-Winston logger for errors & crashes
 Tests
+Token checking to middleware
+
+Extra: 
+ - New mutations and queryies for My todos & Assigned todos
+ - Winston logger for errors & crashes

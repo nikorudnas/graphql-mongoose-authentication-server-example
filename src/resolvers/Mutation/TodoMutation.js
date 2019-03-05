@@ -57,7 +57,7 @@ const deleteTodo = async (_, { _id }, ctx) => {
 
   // Try finding a user with and id from token and then try to remove a todo with id from the array of todo's
   try {
-    await User.update(
+    await User.updateOne(
       { _id: userId },
       { $pull: { todos: { _id } } },
       { multi: true },
